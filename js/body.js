@@ -12,6 +12,13 @@ page.onConsoleMessage = function(msg) {
 };
 
 address = system.args[1];
+//page.settings.resourceTimeout = 1000 * 60; // 1 min
+//page.onResourceTimeout = function(e) {
+//	console.log(e.errorCode);   // it'll probably be 408
+//	console.log(e.errorString); // it'll probably be 'Network timeout on resource'
+//	console.log(e.url);		    // the url whose request timed out
+//	phantom.exit(1);
+//};
 page.open(address, function(status) {
 	if(status !== 'success') {
 		phantom.exit();

@@ -54,7 +54,7 @@ for data in datas:
 			y = index + 1;
 	list[x][y] = data[1];
 
-with open('/result/result.csv', 'wb') as csvfile:
+with open('./result/result.csv', 'wb') as csvfile:
 	csvfile.write(codecs.BOM_UTF8);
 	spamwriter = csv.writer(csvfile, dialect='excel');
 	spamwriter.writerows(list);
