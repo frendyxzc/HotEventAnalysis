@@ -8,7 +8,9 @@ import datetime
 import random
 
 ISOTIMEFORMAT = "%Y%m%d%H%M%S";
-REALTIME_HOT_ADDR = "http://s.weibo.com/top/summary?cate=realtimehot";
+TOPIC_ADDR = "http://d.weibo.com/100803?from=unlogin";
+TEMP_FILE_NAME = "./data/list_topic_";
+RESULT_FILE_NAME = "./data/list_topic.result";
 
 FREE_PROXY = ['121.196.202.46:8118', '112.228.35.24:8888', '111.225.232.85:8118',
 				'120.25.105.45:81', '110.154.44.80:8888', '218.106.205.145:8080',
@@ -19,8 +21,8 @@ FREE_PROXY = ['121.196.202.46:8118', '112.228.35.24:8888', '111.225.232.85:8118'
 
 def getDom(url):
 	index = random.randint(0, len(FREE_PROXY)) % len(FREE_PROXY);
-	cmd='./../phantomjs-2.1.1/bin/phantomjs /js/body.js "%s"'%url
-	#cmd='./../phantomjs-2.1.1/bin/phantomjs --proxy=' + FREE_PROXY[index] + ' /js/body.js "%s"'%url
+	cmd='./../phantomjs-2.1.1/bin/phantomjs /js/body_topic.js "%s"'%url
+	#cmd='./../phantomjs-2.1.1/bin/phantomjs --proxy=' + FREE_PROXY[index] + ' /js/body_topic.js "%s"'%url
 	print "cmd:", cmd
 	stdout,stderr = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE).communicate();
 	if stderr.strip() != '':
@@ -31,20 +33,21 @@ def getDom(url):
 if __name__=="__main__":
 	stamp = datetime.datetime.fromtimestamp(int(time.time())).strftime(ISOTIMEFORMAT);
 
-	content = getDom(REALTIME_HOT_ADDR);
+	content = getDom(TOPIC_ADDR);
 	#content = getDom(sys.argv[1]);
 	
-	#f=file("./data/list_realtimehot_" + stamp + ".data", "w+");
+	#f=file(TEMP_FILE_NAME + stamp + ".data", "w+");
 	#f.writelines(content);
 	#f.close();
 	#print "** finish to write file **"
 	
-	pattern_key = re.compile(r'<a href="/weibo/.*?Refer=top" target="_blank" suda-data="key=tblog_search_list&amp;value=list_realtimehot">(.+?)</a>.*?<p class="star_num"><span>(.+?)</span></p>', re.S);
+	pattern_key = re.compile(r'<img src=".*?" alt="#(.+?)#".*?<span class="number">(.+?) </span>', re.S);
 	keys = re.findall(pattern_key, content);
 	
-	f=file("./data/list_realtimehot.result","a");
-	for key in keys:
-		tmp = key[0] + "," + key[1] + "," + stamp + ";";
+	f=file(RESULT_FILE_NAME,"a");
+	for index in range(len(keys)):
+		key = keys[index];
+		tmp = key[0] + "," + key[1] + "," + stamp + "," + bytes(index) + ";";
 		f.writelines(tmp);
 	f.close();
 	print "** finish to print results **"
