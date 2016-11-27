@@ -9,6 +9,7 @@
 <br>
 >大周末老婆孩纸回老家了决定跳出舒适圈尝试写个简单的热点事件跟踪工具
 <br>
+
 ###1.Excle制图
 >a).one night real time hot <br>
 >![image](https://raw.githubusercontent.com/frendyxzc/HotEventAnalysis/master/screenshot/20161120100120.png)<br>
