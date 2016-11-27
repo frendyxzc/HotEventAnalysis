@@ -10,16 +10,17 @@
 >大周末老婆孩纸回老家了决定跳出舒适圈尝试写个简单的热点事件跟踪工具
 <br>
 ###1.Excle制图
->a).one night real time hot
+>a).one night real time hot <br>
 >![image](https://raw.githubusercontent.com/frendyxzc/HotEventAnalysis/master/screenshot/20161120100120.png)<br>
->b).two hours real time hot and topic
+>b).two hours real time hot and topic <br>
 >![image](https://raw.githubusercontent.com/frendyxzc/HotEventAnalysis/master/screenshot/20161120221222.png)<br>
 >![image](https://raw.githubusercontent.com/frendyxzc/HotEventAnalysis/master/screenshot/20161120222211.png)<br>
 <br>
+
 ###2.网页显示图表
->a).本地flask搭起web服务
+>a).本地flask搭起web服务 <br>
 >![image](https://raw.githubusercontent.com/frendyxzc/HotEventAnalysis/master/screenshot/20161127164840.png)<br>
->b).chartkick制图
+>b).chartkick制图 <br>
 >![image](https://raw.githubusercontent.com/frendyxzc/HotEventAnalysis/master/screenshot/20161127164739.png)<br>
 <br>
 
